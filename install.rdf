@@ -8,7 +8,7 @@
     <id>gcon@labs.mozilla</id>
 
     <name>GCON</name>
-    <version>0.0.1</version>
+    <version>0.1</version>
 
     <unpack>true</unpack>
     <bootstrap>true</bootstrap>
@@ -17,7 +17,7 @@
     <targetApplication>
       <r:Description>
         <id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</id>
-        <minVersion>4.0b*</minVersion>
+        <minVersion>4.0b11</minVersion>
         <maxVersion>4.0.*</maxVersion>
       </r:Description>
     </targetApplication>
