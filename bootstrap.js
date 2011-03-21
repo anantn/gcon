@@ -75,9 +75,14 @@ GCon.prototype = {
                 let timeout = self._window.setTimeout(checkBrowserAndAttach, 500);
                 unloaders.push(function() self._window.clearTimeout(timeout));
             } else {
-                browser.addEventListener("DOMContentLoaded", function(evt) {
+                if (browser.contentDocument &&
+                    browser.contentDocument.readyState == "complete") {
                     self.iconify(tab);
-                }, false);
+                } else {
+                    browser.addEventListener("DOMContentLoaded", function(evt) {
+                        self.iconify(tab);
+                    }, false);
+                }
             }
         }
         
@@ -90,6 +95,12 @@ GCon.prototype = {
 
         // ...and listen for TabOpen events so we can apply icons for the future
         self._window.gBrowser.tabContainer.addEventListener("TabOpen", function(evt) {
+            let tab = evt.target;
+            checkBrowserAndAttach(self, tab);
+        }, false);
+        
+        // sometimes pinning tabs will change the icon, make sure to handle that
+        self._window.gBrowser.tabContainer.addEventListener("TabPinned", function(evt) {
             let tab = evt.target;
             checkBrowserAndAttach(self, tab);
         }, false);
