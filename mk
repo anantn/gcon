@@ -1,3 +1,3 @@
 rm -f gcon.xpi
-zip -b . gcon *
+zip -b . gcon * icons/*
 mv gcon.zip gcon.xpi
